@@ -65,11 +65,11 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto; }
         @media (max-width: 768px) { .gallery-grid { grid-template-columns: 1fr; } }
         
-        /* Card & Slider with Zoom & Protection */
+        /* Card & Slider with Smooth Touch Support */
         .gallery-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: transform 0.3s ease; }
         .gallery-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         
-        .ba-slider { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; cursor: ew-resize; user-select: none; -webkit-user-drag: none; background: #ffffff; }
+        .ba-slider { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; cursor: ew-resize; user-select: none; -webkit-user-drag: none; background: #ffffff; touch-action: pan-y; }
         .ba-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #ffffff; pointer-events: none; -webkit-user-drag: none; user-select: none; }
         .ba-resize { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; clip-path: inset(0 50% 0 0); }
         .ba-resize img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #ffffff; -webkit-user-drag: none; user-select: none; }
@@ -126,7 +126,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container" style="flex-direction: column;">
-            <h1>Transform Photos into Museum-Grade Digital Art / Oil Paintings</h1>
+            <h1>Transform Photos into Museum-Grade Oil Paintings</h1>
             <p>Experience breathtaking digital artistry. Drag the slider to explore the artistic transformation, hover to inspect fine brush strokes, or click fullscreen for detailed viewing.</p>
             <div class="timing-badge">
                 <i class="far fa-clock"></i> Working Hours: Mon - Sat (10:00 AM - 8:00 PM) | Sun (10:00 AM - 1:00 PM)
@@ -137,28 +137,24 @@
     <!-- How to Order (4 Cards Grid) -->
     <section class="steps-section">
         <div class="steps-grid">
-            <!-- Step 1 -->
             <div class="step-card">
                 <i class="fas fa-hand-pointer step-icon"></i>
                 <h4 class="step-title">1. Click Order Now</h4>
                 <p class="step-desc">Choose your preferred artwork style from the gallery and click the Order button below.</p>
             </div>
             
-            <!-- Step 2 -->
             <div class="step-card">
                 <i class="fas fa-qrcode step-icon"></i>
                 <h4 class="step-title">2. Pay via GPay</h4>
                 <p class="step-desc">Scan the QR code received on WhatsApp and share your payment screenshot to confirm.</p>
             </div>
 
-            <!-- Step 3 -->
             <div class="step-card">
                 <i class="fas fa-cloud-upload-alt step-icon"></i>
                 <h4 class="step-title">3. Upload Your Photo</h4>
                 <p class="step-desc">Send your high-resolution original photo on WhatsApp for artistic conversion.</p>
             </div>
 
-            <!-- Step 4 -->
             <div class="step-card">
                 <i class="fas fa-image step-icon"></i>
                 <h4 class="step-title">4. Get HD Photo</h4>
@@ -334,7 +330,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Sliders, Proportional Zoom Lens, Lightbox & Protection -->
+    <!-- JavaScript for Smooth Touch Dragging & Proportional Zoom -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('dragstart', event => {
@@ -345,7 +341,7 @@
 
         const totalCards = 8;
 
-        // Initialize Sliders and Proportionally Scaled Zoom Lens for all 8 Cards
+        // Initialize Sliders with Smooth Touch Support
         for (let i = 1; i <= totalCards; i++) {
             const slider = document.getElementById(`slider${i}`);
             const resize = document.getElementById(`resize${i}`);
@@ -353,7 +349,7 @@
             const lens = document.getElementById(`lens${i}`);
             const afterImg = slider.querySelector('.ba-img');
 
-            let isDown = false;
+            let isDragging = false;
 
             function moveSlider(clientX) {
                 const rect = slider.getBoundingClientRect();
@@ -365,19 +361,21 @@
                 handle.style.left = percent + "%";
             }
 
-            slider.addEventListener("mousedown", () => isDown = true);
-            window.addEventListener("mouseup", () => isDown = false);
+            // Mouse Events
+            slider.addEventListener("mousedown", (e) => { isDragging = true; moveSlider(e.clientX); });
+            window.addEventListener("mouseup", () => isDragging = false);
             window.addEventListener("mousemove", (e) => {
-                if (!isDown) return;
+                if (!isDragging) return;
                 moveSlider(e.clientX);
             });
 
-            slider.addEventListener("touchstart", () => isDown = true);
-            window.addEventListener("touchend", () => isDown = false);
+            // Touch Events (Smooth Mobile Dragging)
+            slider.addEventListener("touchstart", (e) => { isDragging = true; moveSlider(e.touches[0].clientX); }, {passive: true});
+            window.addEventListener("touchend", () => isDragging = false);
             window.addEventListener("touchmove", (e) => {
-                if (!isDown) return;
+                if (!isDragging) return;
                 moveSlider(e.touches[0].clientX);
-            });
+            }, {passive: true});
 
             slider.addEventListener("click", (e) => {
                 moveSlider(e.clientX);
@@ -423,7 +421,7 @@
             });
         }
 
-        // Fullscreen Lightbox with Next/Prev Navigation & Proportional Zoom Lens
+        // Fullscreen Lightbox with Touch Support
         let currentIdx = 1;
         const modal = document.getElementById('lightboxModal');
         const content = document.getElementById('lightboxContent');
@@ -455,7 +453,7 @@
             const lbh = document.getElementById('lightboxHandle');
             const lbl = document.getElementById('lightboxLens');
             const lbAfter = document.getElementById('lbAfterImg');
-            let lbDown = false;
+            let lbDragging = false;
 
             function moveLb(clientX) {
                 const rect = lbs.getBoundingClientRect();
@@ -467,9 +465,14 @@
                 lbh.style.left = percent + "%";
             }
 
-            lbs.addEventListener("mousedown", () => lbDown = true);
-            window.addEventListener("mouseup", () => lbDown = false);
-            window.addEventListener("mousemove", (e) => { if(lbDown) moveLb(e.clientX); });
+            lbs.addEventListener("mousedown", (e) => { lbDragging = true; moveLb(e.clientX); });
+            window.addEventListener("mouseup", () => lbDragging = false);
+            window.addEventListener("mousemove", (e) => { if(lbDragging) moveLb(e.clientX); });
+
+            lbs.addEventListener("touchstart", (e) => { lbDragging = true; moveLb(e.touches[0].clientX); }, {passive: true});
+            window.addEventListener("touchend", () => lbDragging = false);
+            window.addEventListener("touchmove", (e) => { if(lbDragging) moveLb(e.touches[0].clientX); }, {passive: true});
+
             lbs.addEventListener("click", (e) => moveLb(e.clientX));
 
             lbs.addEventListener("mouseenter", () => lbl.style.display = "block");

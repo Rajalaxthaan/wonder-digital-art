@@ -70,7 +70,7 @@
         .label-after { right: 15px; color: var(--gold); }
 
         /* Interactive Magnifying Zoom Lens */
-        .zoom-lens { position: absolute; width: 120px; height: 120px; border: 3px solid var(--gold); border-radius: 50%; background-repeat: no-repeat; pointer-events: none; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,215,0,0.5); z-index: 20; transform: translate(-50%, -50%); }
+        .zoom-lens { position: absolute; width: 130px; height: 130px; border: 3px solid var(--gold); border-radius: 50%; background-repeat: no-repeat; pointer-events: none; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,215,0,0.5); z-index: 20; transform: translate(-50%, -50%); }
 
         .card-body { padding: 20px; text-align: center; }
         
@@ -290,7 +290,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Sliders, Zoom Lens, Lightbox & Image Protection -->
+    <!-- JavaScript for Sliders, Zoom Lens with Proportional Scaling -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('dragstart', event => {
@@ -301,13 +301,13 @@
 
         const totalCards = 8;
 
-        // Initialize Sliders and Zoom Lens for all 8 Cards
+        // Initialize Sliders and Proportionally Scaled Zoom Lens for all 8 Cards
         for (let i = 1; i <= totalCards; i++) {
             const slider = document.getElementById(`slider${i}`);
             const resize = document.getElementById(`resize${i}`);
             const handle = document.getElementById(`handle${i}`);
             const lens = document.getElementById(`lens${i}`);
-            const afterImg = slider.querySelector('.ba-img'); // After image is the base background now
+            const afterImg = slider.querySelector('.ba-img');
 
             let isDown = false;
 
@@ -339,13 +339,6 @@
                 moveSlider(e.clientX);
             });
 
-            afterImg.onload = function() {
-                lens.style.backgroundImage = `url('${afterImg.src}')`;
-            };
-            if(afterImg.complete) {
-                lens.style.backgroundImage = `url('${afterImg.src}')`;
-            }
-
             slider.addEventListener("mouseenter", () => lens.style.display = "block");
             slider.addEventListener("mouseleave", () => lens.style.display = "none");
 
@@ -357,15 +350,36 @@
                 lens.style.left = x + "px";
                 lens.style.top = y + "px";
 
-                const fx = (x / rect.width) * 100;
-                const fy = (y / rect.height) * 100;
+                if (afterImg.complete && afterImg.naturalWidth) {
+                    const imgRatio = afterImg.naturalWidth / afterImg.naturalHeight;
+                    let renderWidth, renderHeight;
 
-                lens.style.backgroundPosition = `${fx}% ${fy}%`;
-                lens.style.backgroundSize = `${rect.width * 2.5}px ${rect.height * 2.5}px`;
+                    if (imgRatio > 1) {
+                        renderWidth = rect.width;
+                        renderHeight = rect.width / imgRatio;
+                    } else {
+                        renderHeight = rect.height;
+                        renderWidth = rect.height * imgRatio;
+                    }
+
+                    const zoomFactor = 2.5;
+                    const bgWidth = renderWidth * zoomFactor;
+                    const bgHeight = renderHeight * zoomFactor;
+
+                    const offsetX = (rect.width - renderWidth) / 2;
+                    const offsetY = (rect.height - renderHeight) / 2;
+
+                    const bgPosX = -((x - offsetX) * zoomFactor - lens.offsetWidth / 2);
+                    const bgPosY = -((y - offsetY) * zoomFactor - lens.offsetHeight / 2);
+
+                    lens.style.backgroundImage = `url('${afterImg.src}')`;
+                    lens.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+                    lens.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+                }
             });
         }
 
-        // Fullscreen Lightbox with Next/Prev Navigation & Zoom Lens
+        // Fullscreen Lightbox with Next/Prev Navigation & Proportional Zoom Lens
         let currentIdx = 1;
         const modal = document.getElementById('lightboxModal');
         const content = document.getElementById('lightboxContent');
@@ -414,16 +428,6 @@
             window.addEventListener("mousemove", (e) => { if(lbDown) moveLb(e.clientX); });
             lbs.addEventListener("click", (e) => moveLb(e.clientX));
 
-            lbAfter.onload = function() {
-                lbl.style.backgroundImage = `url('${lbAfter.src}')`;
-            };
-            if(lbAfter.complete) {
-                lbl.style.backgroundImage = `url('${lbAfter.src}')`;
-            }
-
-            lbs.addEventListener("mouseenter", () => lbl.style.display = "block");
-            lbs.addEventListener("mouseleave", () => lbl.style.display = "none");
-
             lbs.addEventListener("mousemove", (e) => {
                 const rect = lbs.getBoundingClientRect();
                 let x = e.clientX - rect.left;
@@ -432,11 +436,32 @@
                 lbl.style.left = x + "px";
                 lbl.style.top = y + "px";
 
-                const fx = (x / rect.width) * 100;
-                const fy = (y / rect.height) * 100;
+                if (lbAfter.complete && lbAfter.naturalWidth) {
+                    const imgRatio = lbAfter.naturalWidth / lbAfter.naturalHeight;
+                    let renderWidth, renderHeight;
 
-                lbl.style.backgroundPosition = `${fx}% ${fy}%`;
-                lbl.style.backgroundSize = `${rect.width * 2.5}px ${rect.height * 2.5}px`;
+                    if (imgRatio > 1) {
+                        renderWidth = rect.width;
+                        renderHeight = rect.width / imgRatio;
+                    } else {
+                        renderHeight = rect.height;
+                        renderWidth = rect.height * imgRatio;
+                    }
+
+                    const zoomFactor = 2.5;
+                    const bgWidth = renderWidth * zoomFactor;
+                    const bgHeight = renderHeight * zoomFactor;
+
+                    const offsetX = (rect.width - renderWidth) / 2;
+                    const offsetY = (rect.height - renderHeight) / 2;
+
+                    const bgPosX = -((x - offsetX) * zoomFactor - lbl.offsetWidth / 2);
+                    const bgPosY = -((y - offsetY) * zoomFactor - lbl.offsetHeight / 2);
+
+                    lbl.style.backgroundImage = `url('${lbAfter.src}')`;
+                    lbl.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+                    lbl.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+                }
             });
         }
 

@@ -39,9 +39,14 @@
         .nav-btn:hover { transform: translateY(-2px); }
 
         /* Hero Section */
-        .hero { padding: 140px 20px 30px; text-align: center; background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0b1120 70%); }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 15px; line-height: 1.6; }
+        .hero { padding: 130px 20px 30px; text-align: center; background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0b1120 70%); }
+        
+        /* Highlight Price Badge */
+        .price-badge { display: inline-block; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(245, 158, 11, 0.15)); border: 2px solid var(--gold); color: var(--gold); padding: 8px 24px; border-radius: 30px; font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; margin-bottom: 18px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); animation: pulseGlow 2s infinite; }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); } 50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); } 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); } }
+
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.02rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 15px; line-height: 1.6; }
         .timing-badge { display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-top: 10px; }
 
         /* Steps / How to Order (4 Cards Grid) */
@@ -117,7 +122,7 @@
                 <img src="images/wonder_art_logo.png" alt="Wonder Digital Art Logo">
                 Wonder <span>Digital Art</span> & <span>Oil Painting</span>
             </a>
-            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20convert%20my%20photo%20into%20Digital%20Art." target="_blank" class="nav-btn">
+            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20for%20₹100." target="_blank" class="nav-btn">
                 <i class="fab fa-whatsapp"></i> Order on WhatsApp
             </a>
         </div>
@@ -126,6 +131,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container" style="flex-direction: column;">
+            <div class="price-badge">
+                <i class="fas fa-tag"></i> Just ₹100/- Only
+            </div>
             <h1>Transform Photos into Museum-Grade Digital Art / Oil Paintings</h1>
             <p>Experience breathtaking digital artistry. Drag the slider to explore the artistic transformation, hover to inspect fine brush strokes, or click fullscreen for detailed viewing.</p>
             <div class="timing-badge">
@@ -183,7 +191,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%201." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%201." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(1)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -200,7 +208,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%202." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%202." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(2)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -217,7 +225,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%203." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%203." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(3)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -234,7 +242,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%204." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%204." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(4)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -251,7 +259,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%205." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%205." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(5)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -268,7 +276,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%206." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%206." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(6)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -285,7 +293,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%207." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%207." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(7)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -302,7 +310,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20similar%20to%20Gallery%20Item%208." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Art%20(₹100)%20similar%20to%20Gallery%20Item%208." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100/-)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(8)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>

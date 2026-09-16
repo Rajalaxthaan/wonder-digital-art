@@ -34,7 +34,7 @@
             --primary: #38bdf8;
             --gold: #ffd700;
             --text-light: #f8fafc;
-            --text-muted: #cbd5e1; /* Brightened for better contrast ratio */
+            --text-muted: #cbd5e1;
             --glass-bg: rgba(30, 41, 59, 0.7);
             --glass-border: rgba(56, 189, 248, 0.2);
         }
@@ -120,7 +120,7 @@
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
 
-        /* Footer & Terms - Improved Contrast */
+        /* Footer & Terms */
         footer { background: #070a14; padding: 40px 20px; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-muted); }
         .terms-text { max-width: 800px; margin: 0 auto 20px; font-size: 0.72rem; line-height: 1.6; color: #e2e8f0; text-align: justify; padding: 0 10px; }
         .terms-text strong { color: #ffffff; }
@@ -162,25 +162,25 @@
             <div class="steps-grid">
                 <div class="step-card">
                     <i class="fas fa-hand-pointer step-icon"></i>
-                    <h3 class="step-title">1. Click Order Now</h3>
+                    <h2 class="step-title">1. Click Order Now</h2>
                     <p class="step-desc">Choose your preferred artwork style from the gallery and click the Order button below.</p>
                 </div>
                 
                 <div class="step-card">
                     <i class="fas fa-qrcode step-icon"></i>
-                    <h3 class="step-title">2. Pay via GPay</h3>
+                    <h2 class="step-title">2. Pay via GPay</h2>
                     <p class="step-desc">Scan the QR code received on WhatsApp and share your payment screenshot to confirm.</p>
                 </div>
 
                 <div class="step-card">
                     <i class="fas fa-cloud-upload-alt step-icon"></i>
-                    <h3 class="step-title">3. Upload Your Photo</h3>
+                    <h2 class="step-title">3. Upload Your Photo</h2>
                     <p class="step-desc">Send your high-resolution original photo on WhatsApp for artistic conversion.</p>
                 </div>
 
                 <div class="step-card">
                     <i class="fas fa-image step-icon"></i>
-                    <h3 class="step-title">4. Get HD Photo</h3>
+                    <h2 class="step-title">4. Get HD Photo</h2>
                     <p class="step-desc">Receive your premium digital oil painting masterpiece directly on WhatsApp.</p>
                 </div>
             </div>
@@ -530,7 +530,7 @@
                     const offsetY = (rect.height - renderHeight) / 2;
 
                     const bgPosX = -((x - offsetX) * zoomFactor - lbl.offsetWidth / 2);
-                    const bgPosY = -((y - offsetY) * zoomFactor - lbl.offsetHeight / 2);
+                    const bgPosY = -((y - offsetY) * zoomFactor - lens.offsetHeight / 2);
 
                     lbl.style.backgroundImage = `url('${lbAfter.src}')`;
                     lbl.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;

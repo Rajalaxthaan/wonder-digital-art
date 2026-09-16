@@ -39,13 +39,25 @@
         .nav-btn:hover { transform: translateY(-2px); }
 
         /* Hero Section */
-        .hero { padding: 150px 20px 50px; text-align: center; background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0b1120 70%); }
+        .hero { padding: 140px 20px 30px; text-align: center; background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0b1120 70%); }
         .hero h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; background: linear-gradient(135deg, #fff 30%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 15px; line-height: 1.6; }
         .timing-badge { display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-top: 10px; }
 
+        /* Steps / How to Order (4 Cards Grid) */
+        .steps-section { padding: 20px 20px 40px; }
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1000px; margin: 0 auto; }
+        @media (max-width: 900px) { .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } }
+        @media (max-width: 500px) { .steps-grid { grid-template-columns: 1fr; } }
+        
+        .step-card { background: rgba(15, 23, 42, 0.85); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 18px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .step-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .step-icon { font-size: 2rem; color: var(--gold); margin-bottom: 14px; }
+        .step-title { font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+        .step-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
+
         /* Gallery Section (2 Columns) */
-        .gallery-section { padding: 40px 20px 80px; }
+        .gallery-section { padding: 20px 20px 80px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
         .section-header p { color: var(--text-muted); font-size: 0.95rem; }
@@ -73,7 +85,6 @@
         .zoom-lens { position: absolute; width: 130px; height: 130px; border: 3px solid var(--gold); border-radius: 50%; background-repeat: no-repeat; pointer-events: none; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,215,0,0.5); z-index: 20; transform: translate(-50%, -50%); }
 
         .card-body { padding: 20px; text-align: center; }
-        
         .card-actions { display: flex; gap: 10px; }
         .order-card-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--gold), #f59e0b); color: #0b1120; padding: 12px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 0.95rem; transition: opacity 0.2s; }
         .order-card-btn:hover { opacity: 0.9; }
@@ -123,6 +134,39 @@
         </div>
     </section>
 
+    <!-- How to Order (4 Cards Grid) -->
+    <section class="steps-section">
+        <div class="steps-grid">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <i class="fas fa-hand-pointer step-icon"></i>
+                <h4 class="step-title">1. Click Order Now</h4>
+                <p class="step-desc">Choose your preferred artwork style from the gallery and click the Order button below.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="step-card">
+                <i class="fas fa-qrcode step-icon"></i>
+                <h4 class="step-title">2. Pay via GPay</h4>
+                <p class="step-desc">Scan the QR code received on WhatsApp and share your payment screenshot to confirm.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <i class="fas fa-cloud-upload-alt step-icon"></i>
+                <h4 class="step-title">3. Upload Your Photo</h4>
+                <p class="step-desc">Send your high-resolution original photo on WhatsApp for artistic conversion.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <i class="fas fa-image step-icon"></i>
+                <h4 class="step-title">4. Get HD Photo</h4>
+                <p class="step-desc">Receive your premium digital oil painting masterpiece directly on WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section (2 Columns) -->
     <section class="gallery-section">
         <div class="container" style="flex-direction: column;">
@@ -143,7 +187,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%201." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%201." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(1)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -160,7 +204,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%202." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%202." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(2)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -177,7 +221,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%203." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%203." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(3)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -194,7 +238,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%204." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%204." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(4)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -211,7 +255,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%205." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%205." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(5)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -228,7 +272,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%206." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%206." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(6)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -245,7 +289,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%207." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%207." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(7)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -262,7 +306,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-actions">
-                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%208." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹100+)</a>
+                            <a href="https://wa.me/917904496883?text=Hi,%20I%20want%20to%20order%20Digital%20Oil%20Painting%20similar%20to%20Gallery%20Item%208." target="_blank" class="order-card-btn"><i class="fab fa-whatsapp"></i> Order Now (₹250+)</a>
                             <button class="fullscreen-btn" onclick="openLightbox(8)"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
@@ -290,7 +334,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Sliders, Zoom Lens with Proportional Scaling -->
+    <!-- JavaScript for Sliders, Proportional Zoom Lens, Lightbox & Protection -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('dragstart', event => {
@@ -427,6 +471,9 @@
             window.addEventListener("mouseup", () => lbDown = false);
             window.addEventListener("mousemove", (e) => { if(lbDown) moveLb(e.clientX); });
             lbs.addEventListener("click", (e) => moveLb(e.clientX));
+
+            lbs.addEventListener("mouseenter", () => lbl.style.display = "block");
+            lbs.addEventListener("mouseleave", () => lbl.style.display = "none");
 
             lbs.addEventListener("mousemove", (e) => {
                 const rect = lbs.getBoundingClientRect();

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wonder Digital Art & Oil Painting Studio | Best Digital Art Services</title>
     
+    <!-- Vercel Web Analytics Script -->
+    <script defer src="/_vercel/insights/script.js"></script>
+
     <!-- Favicon (Browser Tab Icon) -->
     <link rel="icon" type="image/jpeg" href="images/logo.jpg">
 
@@ -503,7 +506,7 @@
             lbs.addEventListener("mouseleave", () => lbl.style.display = "none");
 
             lbs.addEventListener("mousemove", (e) => {
-                const rect = lbs.getBoundingClientRect();
+                const rect = lbs.gradeClientRect ? lbs.getBoundingClientRect() : lbs.getBoundingClientRect();
                 let x = e.clientX - rect.left;
                 let y = e.clientY - rect.top;
 
